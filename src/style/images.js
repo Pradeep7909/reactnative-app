@@ -20,6 +20,7 @@ const images = {
     circleTick: require('../assets/images/tick-inside-circle.png'),
 
     delete: require('../assets/images/delete.png'),
+    trip: require('../assets/images/trip.png'),
 
 
 };

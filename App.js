@@ -10,6 +10,7 @@ import FoodApp from './src/FoodApp/FoodApp';
 import ShadowView from './src/learning/shadow';
 import Todo from './src/ToDoApp/Todo';
 import ProductsView from './src/mobileCart-redux/Component/Products';
+import Learning from './src/learning';
 
 const App = () => {
 
@@ -17,7 +18,8 @@ const App = () => {
     // <FoodApp />
     // <ShadowView />
     // <Todo />
-    <ProductsView />
+    // <ProductsView />
+    <Learning />
   );
 
 }

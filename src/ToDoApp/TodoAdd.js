@@ -56,19 +56,6 @@ class TodoAddTask extends React.Component {
         };
     }
     addTask = () => {
-
-        // const item = {
-
-        //     name: "Redme",
-        //     color: "Black",
-        //     price: 15000,
-        //     image: "https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-redmi-10-1.jpg"
-
-
-
-        // }
-
-        // this.props.addToCart(item);
         console.log(`task: ${this.state.task}, description: ${this.state.description}`)
         const { task, description } = this.state;
         if (task.trim() !== '') {
