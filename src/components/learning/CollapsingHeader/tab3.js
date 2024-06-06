@@ -50,17 +50,6 @@ class ReviewView extends React.Component {
 
     }
 
-    // Conditionally assign onScroll handler
-    onScrollHandler = this.props.index === 2
-        ? Animated.event(
-            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-            {
-                useNativeDriver: false,
-                listener: this.handleScroll,
-            }
-        )
-        : undefined;
-
     setScrollViewHeight = (event) => {
         const screenHeight = Dimensions.get('window').height;
         const contentHeight = event.nativeEvent.layout.height;
@@ -83,13 +72,25 @@ class ReviewView extends React.Component {
             extrapolate: 'clamp',
         });
 
+        // Conditionally assign onScroll handler
+        const onScrollHandler = this.props.index === 2
+            ? Animated.event(
+                [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                {
+                    useNativeDriver: false,
+                    listener: this.handleScroll,
+                }
+            )
+            : undefined;
+
+
 
         return (
             <View style={[styles.container]}>
                 <ScrollView
                     style={{ flex: 1 }}
                     contentContainerStyle={{ paddingHorizontal: 15, flexGrow: 1, paddingBottom: 20 }}
-                    onScroll={this.onScrollHandler}
+                    onScroll={onScrollHandler}
                     ref={this.props.scrollRef}
                     scrollEventThrottle={16}
                     onScrollBeginDrag={this.setCurrentIndex}

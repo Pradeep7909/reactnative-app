@@ -47,7 +47,7 @@ class NewTripView extends Component {
         }
 
 
-        // console.log(`offset : ${offsetY}, index : ${index}`)
+        console.log(`offset : ${offsetY}, index : ${index}`)
 
 
         if (this.detailsRef.current && index != 0) {
