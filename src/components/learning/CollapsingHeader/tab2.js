@@ -47,17 +47,6 @@ class GalleryView extends React.Component {
 
     }
 
-    // Conditionally assign onScroll handler
-    onScrollHandler = this.props.index === 1
-        ? Animated.event(
-            [{ nativeEvent: { contentOffset: { y: this.props.scrollY } } }],
-            {
-                useNativeDriver: false,
-                listener: this.handleScroll,
-            }
-        )
-        : undefined;
-
     render() {
 
         const { scrollY } = this.props;
@@ -67,6 +56,16 @@ class GalleryView extends React.Component {
             outputRange: [0, 300 - safeTop],
             extrapolate: 'clamp',
         });
+        // Conditionally assign onScroll handler
+        onScrollHandler = this.props.index === 1
+            ? Animated.event(
+                [{ nativeEvent: { contentOffset: { y: this.props.scrollY } } }],
+                {
+                    useNativeDriver: false,
+                    listener: this.handleScroll,
+                }
+            )
+            : undefined;
 
 
 
@@ -74,7 +73,7 @@ class GalleryView extends React.Component {
             <View style={[styles.container]}>
                 <ScrollView
                     contentContainerStyle={{ paddingHorizontal: 15, flexGrow: 1, paddingBottom: 20 }}
-                    onScroll={this.onScrollHandler}
+                    onScroll={onScrollHandler}
                     ref={this.props.scrollRef}
                     scrollEventThrottle={16}
                     onScrollBeginDrag={this.setCurrentIndex}
