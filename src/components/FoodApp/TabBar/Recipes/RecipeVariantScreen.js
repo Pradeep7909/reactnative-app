@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, ImageBackground, TouchableWithoutFeedback, FlatList } from "react-native";
-import colors from "../../../style/colors";
-import BackButton from "../../../commonView/backButton";
+import colors from "../../../../common/colors";
+import BackButton from "../../../../commonView/backButton";
 import LinearGradient from "react-native-linear-gradient";
-import images from "../../../style/images";
-import commonStyles from "../../../style/styles";
+import images from "../../../../common/images";
+import commonStyles from "../../../../common/styles";
 
 
 const RecipeDetail = ({ item, navigation, header }) => {

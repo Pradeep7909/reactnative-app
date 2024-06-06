@@ -4,8 +4,8 @@ import { getSafeAreaInsets } from 'react-native-safe-area-context';
 class DeviceSize {
     static screenHeight = Dimensions.get('window').height;
     static screenWidth = Dimensions.get('window').width;
-    static safeAreaTop = 0;
-    static safeAreaBottom = 0;
+    static safeAreaTop = 44;
+    static safeAreaBottom = 20;
 
     static async fetchSafeAreaInsets() {
         const insets = await getSafeAreaInsets();

@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import colors from "../style/colors";
+import colors from "../common/colors";
 const TopView = ({ title }) => {
 
     return (

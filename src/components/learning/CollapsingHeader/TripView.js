@@ -1,7 +1,7 @@
 import React from "react";
 import { ImageBackground, StyleSheet, View, Text, ScrollView, TouchableOpacity, Animated } from "react-native";
-import images from "../style/images";
-import colors from "../style/colors";
+import images from "../common/images";
+import colors from "../common/colors";
 
 
 const SingleTabView = ({ title, index, selectedIndex, onPress }) => {
@@ -47,7 +47,7 @@ class SingleTripView extends React.Component {
         }
     }
 
-    SAFE_TOP = 44
+    safeTop = DeviceSize.safeAreaTop
     changeTab = (index) => {
         this.setState({ selectedTab: index });
     }
@@ -69,12 +69,12 @@ class SingleTripView extends React.Component {
         const { scrollY } = this.state;
 
         const translateY = scrollY.interpolate({
-            inputRange: [0, 300 - this.SAFE_TOP],
-            outputRange: [0, -300 + this.SAFE_TOP],
+            inputRange: [0, 300 - safeTop],
+            outputRange: [0, -300 + safeTop],
             extrapolate: 'clamp',
         });
         const imageOpacity = scrollY.interpolate({
-            inputRange: [0, 300 - this.SAFE_TOP],
+            inputRange: [0, 300 - safeTop],
             outputRange: [1, 0],
             extrapolate: 'clamp',
         });
@@ -105,9 +105,9 @@ class SingleTripView extends React.Component {
                 </Animated.View>
 
 
-                <Animated.View style={{ flex: 1, position: 'absolute', bottom: 0, left: 0, right: 0, top: 100 + this.SAFE_TOP }}>
+                <Animated.View style={{ flex: 1, position: 'absolute', bottom: 0, left: 0, right: 0, top: 100 + safeTop }}>
                     <Animated.ScrollView
-                        contentContainerStyle={{ paddingTop: 300 - this.SAFE_TOP }}
+                        contentContainerStyle={{ paddingTop: 300 - safeTop }}
                         showsVerticalScrollIndicator={false}
                         scrollEventThrottle={16}
                         onScroll={Animated.event(
@@ -117,16 +117,11 @@ class SingleTripView extends React.Component {
                         style={{ margin: 15 }}
                     >
                         <Animated.View style={{ flex: 1 }}>
-                            <SingleDetail />
-                            <SingleDetail />
-                            <SingleDetail />
-                            <SingleDetail />
-                            <SingleDetail />
-                            <SingleDetail />
-                            <SingleDetail />
-                            <SingleDetail />
-                            <SingleDetail />
-                            <SingleDetail />
+                            {[1, 2, 3, 4, 5, 6, 7].map((val, ind) => (
+                                <SingleDetail key={ind} />
+                            ))}
+
+
                         </Animated.View>
                     </Animated.ScrollView>
                 </Animated.View>

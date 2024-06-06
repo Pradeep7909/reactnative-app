@@ -1,7 +1,7 @@
 
 import React from "react";
 import { ScrollView, StyleSheet, Text, View, Animated } from "react-native";
-
+import DeviceSize from "../../../common/device";
 
 const SingleDetail = ({ title, descripiton }) => {
     return (
@@ -19,7 +19,7 @@ const SingleDetail = ({ title, descripiton }) => {
 
 class GalleryView extends React.Component {
 
-    SAFE_TOP = 44
+    safeTop = DeviceSize.safeAreaTop
 
     constructor(props) {
         super(props);
@@ -39,45 +39,47 @@ class GalleryView extends React.Component {
         console.log('galleryView updated')
     }
 
+
+    setCurrentIndex = () => {
+        if (this.props.index != 1) {
+            this.props.setIndex(1)
+        }
+
+    }
+
+    // Conditionally assign onScroll handler
+    onScrollHandler = this.props.index === 1
+        ? Animated.event(
+            [{ nativeEvent: { contentOffset: { y: this.props.scrollY } } }],
+            {
+                useNativeDriver: false,
+                listener: this.handleScroll,
+            }
+        )
+        : undefined;
+
     render() {
 
         const { scrollY } = this.props;
 
         const contentTranslateY = scrollY.interpolate({
-            inputRange: [0, 300 - this.SAFE_TOP],
-            outputRange: [0, 300 - this.SAFE_TOP],
+            inputRange: [0, 300 - safeTop],
+            outputRange: [0, 300 - safeTop],
             extrapolate: 'clamp',
         });
 
-        const setCurrentIndex = () => {
-            if (this.props.index != 1) {
-                this.props.setIndex(1)
-            }
-
-        }
-
-        // Conditionally assign onScroll handler
-        const onScrollHandler = this.props.index === 1
-            ? Animated.event(
-                [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-                {
-                    useNativeDriver: false,
-                    listener: this.handleScroll,
-                }
-            )
-            : undefined;
 
 
         return (
             <View style={[styles.container]}>
                 <ScrollView
                     contentContainerStyle={{ paddingHorizontal: 15, flexGrow: 1, paddingBottom: 20 }}
-                    onScroll={onScrollHandler}
+                    onScroll={this.onScrollHandler}
                     ref={this.props.scrollRef}
                     scrollEventThrottle={16}
-                    onScrollBeginDrag={setCurrentIndex}
+                    onScrollBeginDrag={this.setCurrentIndex}
                 >
-                    <Animated.View style={{ transform: [{ translateY: contentTranslateY }], marginBottom: 300 - this.SAFE_TOP }}>
+                    <Animated.View style={{ transform: [{ translateY: contentTranslateY }], marginBottom: 300 - safeTop }}>
                         {[1, 2, 3, 4, 5, 6, 7, 8].map((val, ind) => (
                             <SingleDetail key={ind} />
                         ))}

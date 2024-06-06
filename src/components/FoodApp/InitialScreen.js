@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import colors from "../style/colors";
-import images from "../style/images";
+import colors from "../../common/colors";
+import images from "../../common/images";
 
 class InitialScreen extends Component {
 

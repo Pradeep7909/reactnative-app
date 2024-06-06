@@ -1,6 +1,6 @@
-
 import React from "react";
 import { ScrollView, StyleSheet, Text, View, Animated, Dimensions } from "react-native";
+import DeviceSize from "../../../common/device";
 
 
 const SingleDetail = ({ title, descripiton }) => {
@@ -19,7 +19,7 @@ const SingleDetail = ({ title, descripiton }) => {
 
 class ReviewView extends React.Component {
 
-    SAFE_TOP = 44
+    safeTop = DeviceSize.safeAreaTop
 
     constructor(props) {
         super(props);
@@ -43,59 +43,60 @@ class ReviewView extends React.Component {
         console.log('reviewview updated')
     }
 
+    setCurrentIndex = () => {
+        if (this.props.index != 2) {
+            this.props.setIndex(2)
+        }
+
+    }
+
+    // Conditionally assign onScroll handler
+    onScrollHandler = this.props.index === 2
+        ? Animated.event(
+            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+            {
+                useNativeDriver: false,
+                listener: this.handleScroll,
+            }
+        )
+        : undefined;
+
+    setScrollViewHeight = (event) => {
+        const screenHeight = Dimensions.get('window').height;
+        const contentHeight = event.nativeEvent.layout.height;
+        //168 is equal to tabbar + header + safearea
+        const extraBottomHeight = screenHeight - event.nativeEvent.layout.height - 124 - safeTop
+        this.setState({ extraBottomHeight: extraBottomHeight > 0 ? extraBottomHeight : 0 })
+
+        console.log(`Screen height: ${screenHeight}`);
+        console.log(`Content height: ${contentHeight}`);
+        console.log(`Extra bottom height: ${this.state.extraBottomHeight}`);
+    }
+
     render() {
 
         const { scrollY } = this.props;
 
         const contentTranslateY = scrollY.interpolate({
-            inputRange: [0, 300 - this.SAFE_TOP],
-            outputRange: [0, 300 - this.SAFE_TOP],
+            inputRange: [0, 300 - safeTop],
+            outputRange: [0, 300 - safeTop],
             extrapolate: 'clamp',
         });
 
-        const setCurrentIndex = () => {
-            if (this.props.index != 2) {
-                this.props.setIndex(2)
-            }
-
-        }
-
-        // Conditionally assign onScroll handler
-        const onScrollHandler = this.props.index === 2
-            ? Animated.event(
-                [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-                {
-                    useNativeDriver: false,
-                    listener: this.handleScroll,
-                }
-            )
-            : undefined;
-
-        const setScrollViewHeight = (event) => {
-            const screenHeight = Dimensions.get('window').height;
-            const contentHeight = event.nativeEvent.layout.height;
-            //168 is equal to tabbar + header + safearea
-            const extraBottomHeight = screenHeight - event.nativeEvent.layout.height - 124 - this.SAFE_TOP
-            this.setState({ extraBottomHeight: extraBottomHeight > 0 ? extraBottomHeight : 0 })
-
-            console.log(`Screen height: ${screenHeight}`);
-            console.log(`Content height: ${contentHeight}`);
-            console.log(`Extra bottom height: ${this.state.extraBottomHeight}`);
-        }
 
         return (
             <View style={[styles.container]}>
                 <ScrollView
                     style={{ flex: 1 }}
                     contentContainerStyle={{ paddingHorizontal: 15, flexGrow: 1, paddingBottom: 20 }}
-                    onScroll={onScrollHandler}
+                    onScroll={this.onScrollHandler}
                     ref={this.props.scrollRef}
                     scrollEventThrottle={16}
-                    onScrollBeginDrag={setCurrentIndex}
+                    onScrollBeginDrag={this.setCurrentIndex}
                 >
                     <Animated.View
-                        style={{ transform: [{ translateY: contentTranslateY }], marginBottom: 300 - this.SAFE_TOP }}
-                        onLayout={setScrollViewHeight}
+                        style={{ transform: [{ translateY: contentTranslateY }], marginBottom: 300 - safeTop }}
+                        onLayout={this.setScrollViewHeight}
                     >
                         {[1, 2, 3].map((val, ind) => (
                             <SingleDetail key={ind} />

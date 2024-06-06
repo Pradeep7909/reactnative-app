@@ -3,8 +3,8 @@ import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import SingleTripView from "./TripView";
-import TodoList from "../ToDoApp/TodoList";
-import RecipesScreen from "../FoodApp/TabBar/Recipes/RecipesScreen";
+import TodoList from "../../../../ToDoApp/TodoList";
+import RecipesScreen from "../../TabBar/Recipes/RecipesScreen";
 
 const Tab = createMaterialTopTabNavigator();
 

@@ -6,11 +6,13 @@
  */
 
 import React from 'react';
-import FoodApp from './src/FoodApp/FoodApp';
-import ShadowView from './src/learning/shadow';
-import Todo from './src/ToDoApp/Todo';
-import ProductsView from './src/mobileCart-redux/Component/Products';
-import Learning from './src/learning';
+import Learning from './src/components/learning';
+import FoodApp from './src/components/FoodApp/FoodApp';
+import Todo from './src/components/ToDoApp/Todo';
+
+
+
+
 
 const App = () => {
 

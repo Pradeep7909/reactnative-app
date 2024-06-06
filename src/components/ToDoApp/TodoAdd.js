@@ -1,10 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput } from "react-native";
-import colors from "../style/colors";
-import BackButton from "../commonView/backButton";
-import CustomButtom from "../commonView/customButton";
+import colors from "../../common/colors";
+import BackButton from "../../commonView/backButton";
+import CustomButton from "../../commonView/customButton";
 import { connect } from "react-redux";
-import { addNewTask, addToCart } from "../mobileCart-redux/action";
+import { addNewTask, addToCart } from "../../redux/action";
+
+
 
 
 const TopView = ({ navigation }) => {
@@ -97,7 +99,7 @@ class TodoAddTask extends React.Component {
                         }
                         }
                     />
-                    <CustomButtom
+                    <CustomButton
                         title="Add Task"
                         style={styles.button}
                         onPress={this.addTask}

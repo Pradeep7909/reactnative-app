@@ -1,9 +1,9 @@
 import React from "react";
 import { FlatList, ImageBackground, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import images from "../../../style/images";
-import TopView from "../../../commonView/TopView";
-import commonStyles from "../../../style/styles";
+import images from "../../../../common/images";
+import TopView from "../../../../commonView/TopView";
+import commonStyles from "../../../../common/styles";
 
 const SingleRecipe = ({ item, navigation }) => {
 

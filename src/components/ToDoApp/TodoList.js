@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import colors from "../style/colors";
+import colors from "../../common/colors";
 import { connect, useDispatch } from "react-redux";
-import images from "../style/images";
-import { deleteTask } from "../mobileCart-redux/action";
+import images from "../../common/images";
+import { deleteTask } from "../../redux/action";
+
 
 
 const TopView = ({ navigation }) => {

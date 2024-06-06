@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import TopView from "../../../commonView/TopView";
+import TopView from "../../../../commonView/TopView";
 
 
 class RestaurantsScreen extends React.Component {

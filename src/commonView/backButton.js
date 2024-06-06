@@ -1,6 +1,6 @@
 import React from "react";
 import { View, TouchableOpacity, Text, StyleSheet, Image } from "react-native";
-import images from "../style/images";
+import images from "../common/images";
 
 
 const BackButton = ({ title, navigation, style }) => {

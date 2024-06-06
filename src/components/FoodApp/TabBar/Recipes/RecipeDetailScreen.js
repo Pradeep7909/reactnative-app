@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { FlatList, Image, ImageBackground, Modal, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
-import images from "../../../style/images";
-import commonStyles from "../../../style/styles";
+import images from "../../../../common/images";
+import commonStyles from "../../../../common/styles";
 import LinearGradient from "react-native-linear-gradient";
-import BackButton from "../../../commonView/backButton";
-import colors from "../../../style/colors";
+import BackButton from "../../../../commonView/backButton";
+import colors from "../../../../common/colors";
 import { BlurView } from "@react-native-community/blur";
-import CustomButtom from "../../../commonView/customButton";
+import CustomButton from "../../../../commonView/customButton";
 
 
 const LogoImage = ({ label, image }) => {
@@ -167,7 +167,7 @@ class RecipeDetailScreen extends React.Component {
 
                 <View style={{ padding: 15 }}>
 
-                    <CustomButtom
+                    <CustomButton
                         title="See Ingredients"
                         onPress={this.seeIngradientAction}
 
@@ -241,7 +241,7 @@ class RecipeDetailScreen extends React.Component {
                         }
 
                         <View style={styles.bottomButton}>
-                            <CustomButtom
+                            <CustomButton
                                 title="Add to Reminder"
                                 onPress={this.hideIngradientAction}
                             />
