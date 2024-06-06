@@ -1,21 +1,8 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View, Animated } from "react-native";
 import DeviceSize from "../../../common/device";
+import SingleDetailView from "../../../commonView/SingleDetailView";
 
-
-const SingleDetail = ({ title, descripiton }) => {
-    return (
-        <View style={{ marginVertical: 10, gap: 5 }}>
-
-            <Text style={styles.detailTitle}>
-                Breathtaking Views
-            </Text>
-            <Text style={styles.detailDescription}>
-                Witness the stunning beauty of mountain landscapes, from the first light of dawn breaking over the peaks to the golden hues of sunset. Every moment offers a picturesque scene that is perfect for nature lovers and photography enthusiasts alike.
-            </Text>
-        </View>
-    );
-}
 
 class DetailsView extends React.Component {
 
@@ -79,7 +66,7 @@ class DetailsView extends React.Component {
                 >
                     <Animated.View style={{ transform: [{ translateY: contentTranslateY }], marginBottom: 300 - safeTop }}>
                         {[1, 2, 3, 4, 5, 6, 7, 8].map((val, ind) => (
-                            <SingleDetail key={ind} />
+                            <SingleDetailView key={ind} title={"Breathtaking Views"} descripiton={"Witness the stunning beauty of mountain landscapes, from the first light of dawn breaking over the peaks to the golden hues of sunset. Every moment offers a picturesque scene that is perfect for nature lovers and photography enthusiasts alike."} />
                         ))}
                     </Animated.View>
 
@@ -94,18 +81,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
-    detailTitle: {
-        fontSize: 16,
-        fontWeight: '600',
-
-    },
-    detailDescription: {
-        fontSize: 14,
-        fontWeight: '400',
-        color: 'darkgary'
-
-    }
-
 
 });
 

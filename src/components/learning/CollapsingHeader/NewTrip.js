@@ -60,8 +60,6 @@ class NewTripView extends Component {
             this.reviewsRef.current.scrollTo({ y: updatedOffset, animated: true });
         }
 
-        // console.log(DeviceSize.screenHeight)
-
     };
 
     setIndex = (index) => {

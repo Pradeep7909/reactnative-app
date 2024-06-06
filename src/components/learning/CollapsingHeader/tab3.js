@@ -1,21 +1,7 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View, Animated, Dimensions } from "react-native";
 import DeviceSize from "../../../common/device";
-
-
-const SingleDetail = ({ title, descripiton }) => {
-    return (
-        <View style={{ marginVertical: 10, gap: 5 }}>
-
-            <Text style={styles.detailTitle}>
-                Breathtaking Views
-            </Text>
-            <Text style={styles.detailDescription}>
-                Witness the stunning beauty of mountain landscapes, from the first light of dawn breaking over the peaks to the golden hues of sunset. Every moment offers a picturesque scene that is perfect for nature lovers and photography enthusiasts alike.
-            </Text>
-        </View>
-    );
-}
+import SingleDetailView from "../../../commonView/SingleDetailView";
 
 class ReviewView extends React.Component {
 
@@ -100,7 +86,7 @@ class ReviewView extends React.Component {
                         onLayout={this.setScrollViewHeight}
                     >
                         {[1, 2, 3].map((val, ind) => (
-                            <SingleDetail key={ind} />
+                            <SingleDetailView key={ind} title={"Breathtaking Views"} descripiton={"Witness the stunning beauty of mountain landscapes, from the first light of dawn breaking over the peaks to the golden hues of sunset. Every moment offers a picturesque scene that is perfect for nature lovers and photography enthusiasts alike."} />
                         ))}
                     </Animated.View>
                     <View style={{ height: this.state.extraBottomHeight }} />
