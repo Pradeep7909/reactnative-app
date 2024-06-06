@@ -49,7 +49,6 @@ class ReviewView extends React.Component {
         }
 
     }
-
     setScrollViewHeight = (event) => {
         const screenHeight = Dimensions.get('window').height;
         const contentHeight = event.nativeEvent.layout.height;
@@ -71,6 +70,16 @@ class ReviewView extends React.Component {
             outputRange: [0, 300 - safeTop],
             extrapolate: 'clamp',
         });
+        // Conditionally assign onScroll handler
+        onScrollHandler = this.props.index === 2
+            ? Animated.event(
+                [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                {
+                    useNativeDriver: false,
+                    listener: this.handleScroll,
+                }
+            )
+            : undefined;
 
         // Conditionally assign onScroll handler
         const onScrollHandler = this.props.index === 2

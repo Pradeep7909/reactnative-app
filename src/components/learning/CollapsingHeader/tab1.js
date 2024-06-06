@@ -40,12 +40,10 @@ class DetailsView extends React.Component {
         console.log('detail view updated')
     }
 
-
     setCurrentIndex = () => {
         if (this.props.index != 0) {
             this.props.setIndex(0)
         }
-
     }
 
     render() {
@@ -58,6 +56,16 @@ class DetailsView extends React.Component {
             extrapolate: 'clamp',
 
         });
+        // Conditionally assign onScroll handler
+        const onScrollHandler = this.props.index === 0
+            ? Animated.event(
+                [{ nativeEvent: { contentOffset: { y: this.props.scrollY } } }],
+                {
+                    useNativeDriver: false,
+                    listener: this.handleScroll,
+                }
+            )
+            : undefined;
 
         // Conditionally assign onScroll handler
         const onScrollHandler = this.props.index === 0

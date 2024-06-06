@@ -47,7 +47,6 @@ class GalleryView extends React.Component {
 
     }
 
-
     render() {
 
         const { scrollY } = this.props;
@@ -57,6 +56,16 @@ class GalleryView extends React.Component {
             outputRange: [0, 300 - safeTop],
             extrapolate: 'clamp',
         });
+        // Conditionally assign onScroll handler
+        onScrollHandler = this.props.index === 1
+            ? Animated.event(
+                [{ nativeEvent: { contentOffset: { y: this.props.scrollY } } }],
+                {
+                    useNativeDriver: false,
+                    listener: this.handleScroll,
+                }
+            )
+            : undefined;
 
         // Conditionally assign onScroll handler
         const onScrollHandler = this.props.index === 1
