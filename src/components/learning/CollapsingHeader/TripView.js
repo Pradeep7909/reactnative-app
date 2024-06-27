@@ -52,22 +52,12 @@ class SingleTripView extends React.Component {
         this.setState({ selectedTab: index });
     }
 
-    handleChildScroll = (event) => {
-        const scrollY = event.nativeEvent.contentOffset.y;
-        console.log(`Child scrollY: ${scrollY}`)
-        if (scrollY < 300 && scrollY > 0) {
-            this.setState({ imageTopMargin: scrollY })
-        } else if (scrollY < 0) {
-            this.setState({ imageTopMargin: 0 })
-        } else if (scrollY > 300) {
-            this.setState({ imageTopMargin: 300 })
-        }
-    }
 
     render() {
 
         const { scrollY } = this.state;
 
+        //used for animation
         const translateY = scrollY.interpolate({
             inputRange: [0, 300 - safeTop],
             outputRange: [0, -300 + safeTop],
@@ -88,6 +78,8 @@ class SingleTripView extends React.Component {
         return (
 
             <View style={styles.container}>
+
+                {/* headerview */}
                 <Animated.View style={[{ transform: [{ translateY }], gap: 5, position: 'absolute', width: '100%', zIndex: 2 }]}>
                     <Animated.Image style={[styles.bgImage, { opacity: imageOpacity }]} source={images.trip} />
                     <Text style={styles.title}>Mountain Trip</Text>
@@ -104,7 +96,7 @@ class SingleTripView extends React.Component {
                     <Seprator />
                 </Animated.View>
 
-
+                {/* scroll View */}
                 <Animated.View style={{ flex: 1, position: 'absolute', bottom: 0, left: 0, right: 0, top: 100 + safeTop }}>
                     <Animated.ScrollView
                         contentContainerStyle={{ paddingTop: 300 - safeTop }}
