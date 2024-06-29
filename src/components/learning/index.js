@@ -1,6 +1,7 @@
 import React from "react";
 import NewTripView from "./CollapsingHeader/NewTrip";
 import { NavigationContainer } from '@react-navigation/native';
+import ChartExample from "./graph/graph";
 // import DishUploadDemo from "./VideoClip/DishUploadDemo";
 // import DishUploadGallery from "./VideoClip/DishUploadGallery";
 
@@ -8,9 +9,10 @@ import { NavigationContainer } from '@react-navigation/native';
 const Learning = () => {
     return (
         <NavigationContainer>
-            <NewTripView />
+            {/* <NewTripView /> */}
             {/* <DishUploadDemo /> */}
             {/* <DishUploadGallery /> */}
+            <ChartExample />
         </NavigationContainer>
     );
 }
