@@ -9,6 +9,8 @@ import React from 'react';
 import Learning from './src/components/learning';
 import FoodApp from './src/components/FoodApp/FoodApp';
 import Todo from './src/components/ToDoApp/Todo';
+import 'react-native-reanimated';
+
 
 
 
